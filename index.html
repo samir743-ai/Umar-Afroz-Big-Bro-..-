@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy 6 Years on YouTube, Umar Afroz! 🎆</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0c10;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+    }
+
+    /* Fireworks Canvas Background */
+    #fireworksCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Emoji Rain Container */
+    .emoji-rain-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .falling-emoji {
+      position: absolute;
+      top: -50px;
+      user-select: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0.8;
+      }
+    }
+
+    /* Main Container for Content */
+    .container {
+      position: relative;
+      z-index: 3;
+      padding: 30px 25px;
+      max-width: 750px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px 0 rgba(255, 0, 100, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 20px;
+    }
+
+    /* Title Styling */
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(45deg, #ff007f, #ffeb3b, #00e5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff007f; }
+      to { text-shadow: 0 0 25px #00e5ff, 0 0 35px #ffeb3b; }
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #ff9a9e;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .message {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #f0f0f0;
+      margin-bottom: 25px;
+    }
+
+    /* Surprise Gift Box */
+    .surprise-section {
+      margin-top: 15px;
+    }
+
+    .gift-box {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #ff0055, #ff5050);
+      margin: 0 auto;
+      border-radius: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      box-shadow: 0 10px 30px rgba(255, 0, 85, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+
+    .gift-box:hover {
+      transform: scale(1.15) rotate(-5deg);
+      box-shadow: 0 15px 40px rgba(255, 0, 85, 0.9);
+    }
+
+    /* Medal Reveal Styling */
+    .medal-container {
+      display: none;
+      margin-top: 20px;
+      animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .medal {
+      width: 170px;
+      height: 170px;
+      background: radial-gradient(circle, #ffe066 20%, #f5af19 100%);
+      border-radius: 50%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 8px solid #ffd700;
+      box-shadow: 0 0 35px #ffd700, inset 0 0 15px #b37400;
+      position: relative;
+    }
+
+    .medal::before {
+      content: '🥇';
+      font-size: 2.8rem;
+    }
+
+    .medal-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #4a2c00;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+
+    .ribbon {
+      width: 45px;
+      height: 65px;
+      background: #e60000;
+      margin: -10px auto 0;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Fireworks Canvas -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Emoji Rain Container -->
+  <div class="emoji-rain-container" id="emojiContainer"></div>
+
+  <!-- Main Card Content -->
+  <div class="container">
+    <h1>Congratulations Big Bro! ⚡💥</h1>
+    <h2>Umar Afroz</h2>
+
+    <p class="message">
+      Celebrating <strong>6 Successful Years</strong> of hard work, dedication, and amazing content on YouTube! <br>
+      📅 12 September 2020 – 12 September 2026 <br><br>
+      You are a true warrior and a very hard-working man. Keep inspiring us and shining bright! 🌌🌠
+    </p>
+
+    <!-- Surprise Box Section -->
+    <div class="surprise-section">
+      <div class="gift-box" id="giftBox" onclick="openSurprise()">
+        🎁
+      </div>
+      <p id="clickHint" style="margin-top: 12px; color: #ffeb3b; font-size: 0.95rem; font-weight: bold;">
+        👇 Tap the surprise box! 👇
+      </p>
+
+      <div class="medal-container" id="medalContainer">
+        <div class="medal">
+          <div class="medal-name">Umar Afroz</div>
+        </div>
+        <div class="ribbon"></div>
+        <p style="margin-top: 15px; font-weight: bold; color: #ffe066; font-size: 1.2rem;">
+          🏆 Hard Work & Excellence Medal 🏆
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* Emoji Rain Generator */
+    const emojiList = ['🫶', '😇', '🪻', '🎄', '💐', '🥀', '🌸', '💥', '⚡', '🎂', '🍰', '🍫', '🍩', '🎆', '🌌', '🌠'];
+    const emojiContainer = document.getElementById('emojiContainer');
+
+    function createEmojiRain() {
+      const emoji = document.createElement('div');
+      emoji.classList.add('falling-emoji');
+      emoji.innerText = emojiList[Math.floor(Math.random() * emojiList.length)];
+      
+      // Randomize position, size, and speed
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.fontSize = (Math.random() * 20 + 20) + 'px'; // Size between 20px - 40px
+      const duration = Math.random() * 3 + 3; // Fall duration between 3s - 6s
+      emoji.style.animationDuration = duration + 's';
+
+      emojiContainer.appendChild(emoji);
+
+      // Remove emoji after animation completes
+      setTimeout(() => {
+        emoji.remove();
+      }, duration * 1000);
+    }
+
+    // Start emoji rain continuous loop
+    setInterval(createEmojiRain, 150);
+
+    /* Surprise Box Trigger */
+    function openSurprise() {
+      document.getElementById('giftBox').style.display = 'none';
+      document.getElementById('clickHint').style.display = 'none';
+      document.getElementById('medalContainer').style.display = 'block';
+
+      // Blast extra fireworks on opening
+      for (let i = 0; i < 8; i++) {
+        setTimeout(createFireworkBurst, i * 180);
+      }
+    }
+
+    /* Fireworks Canvas Script */
+    const canvas = document.getElementById('fireworksCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.radius = Math.random() * 3 + 1;
+        this.velocity = {
+          x: (Math.random() - 0.5) * 8,
+          y: (Math.random() - 0.5) * 8
+        };
+        this.alpha = 1;
+        this.friction = 0.98;
+        this.gravity = 0.05;
+      }
+
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.restore();
+      }
+
+      update() {
+        this.velocity.x *= this.friction;
+        this.velocity.y *= this.friction;
+        this.velocity.y += this.gravity;
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        this.alpha -= 0.015;
+      }
+    }
+
+    let particles = [];
+    const colors = ['#ff0055', '#ffeb3b', '#00e5ff', '#ff00ff', '#00ff66', '#ffffff'];
+
+    function createFireworkBurst() {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * (canvas.height * 0.6);
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      for (let i = 0; i < 40; i++) {
+        particles.push(new Particle(x, y, color));
+      }
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.fillStyle = 'rgba(11, 12, 16, 0.2)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((particle, index) => {
+        if (particle.alpha > 0) {
+          particle.update();
+          particle.draw();
+        } else {
+          particles.splice(index, 1);
+        }
+      });
+
+      if (Math.random() < 0.05) {
+        createFireworkBurst();
+      }
+    }
+
+    animate();
+  </script>
+</body>
+</html>
